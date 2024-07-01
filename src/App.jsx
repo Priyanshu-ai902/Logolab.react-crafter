@@ -11,10 +11,18 @@ function App() {
     <>
       <Header />
       <div className='w-64 fixed'>
-        <SideNav />
+        <SideNav selectedIndex={(value) => console.log(value)} />
       </div>
-      <div className="ml-64">
-        body
+      <div className="ml-64 grid grid-cols-1 md:grid-cols-6">
+        <div className="">
+
+        </div>
+        <div className="">
+
+        </div>
+        <div className="">
+
+        </div>
       </div>
     </>
   )
