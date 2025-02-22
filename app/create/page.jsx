@@ -28,15 +28,16 @@ const CreateLogo = () => {
 
             {
                 step == 1 ?
-                    <LogoTitle onHandleImputChange={(v) => onHandleImputChange('title', v)} /> :
+                    <LogoTitle onHandleImputChange={(v) => onHandleImputChange('title', v)} 
+                    fromData={fromData}/> :
                     step == 2 ?
-                        <LogoDesc onHandleImputChange={(v) => onHandleImputChange('desc', v)} /> :
+                        <LogoDesc onHandleImputChange={(v) => onHandleImputChange('desc', v)} fromData={fromData}/> :
                         step == 3 ?
-                            <LogoColorPallete onHandleImputChange={(v) => onHandleImputChange('palette', v)} /> :
+                            <LogoColorPallete onHandleImputChange={(v) => onHandleImputChange('palette', v)} fromData={fromData}/> :
                             step == 4 ?
-                                <LogoDesigns onHandleImputChange={(v) => onHandleImputChange('design', v)} /> :
+                                <LogoDesigns onHandleImputChange={(v) => onHandleImputChange('design', v)} fromData={fromData}/> :
                                 step == 5 ?
-                                    <LogoIdea onHandleImputChange={(v) => onHandleImputChange('idea', v)} /> :
+                                    <LogoIdea onHandleImputChange={(v) => onHandleImputChange('idea', v)} fromData={fromData}/> :
 
                                     null
             }
