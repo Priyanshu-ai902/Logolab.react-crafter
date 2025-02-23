@@ -8,18 +8,20 @@ import LogoDesc from './_components/LogoDesc'
 import LogoColorPallete from './_components/LogoColorPallete'
 import LogoDesigns from './_components/LogoDesigns'
 import LogoIdea from './_components/LogoIdea'
+import PricingModel from './_components/PricingModel'
 
 const CreateLogo = () => {
     const [step, setStep] = useState(1)
-    const [fromData, setFormData] = useState()
-
+    const [fromData, setFormData] = useState({})
+    
     const onHandleImputChange = (field, value) => {
-        setFormData(prev => ({
-            ...prev,
-            [field]: value
-        }))
-        console.log(fromData)
-    }
+        setFormData((prev) => {
+            const updatedData = { ...prev, [field]: value };
+            console.log("Updated fromData:", updatedData); // Log updated state
+            return updatedData;
+        });
+    };
+
 
 
 
@@ -28,18 +30,22 @@ const CreateLogo = () => {
 
             {
                 step == 1 ?
-                    <LogoTitle onHandleImputChange={(v) => onHandleImputChange('title', v)} 
-                    fromData={fromData}/> :
+                    <LogoTitle onHandleImputChange={(v) => onHandleImputChange('title', v)}
+                        fromData={fromData} /> :
                     step == 2 ?
-                        <LogoDesc onHandleImputChange={(v) => onHandleImputChange('desc', v)} fromData={fromData}/> :
+                        <LogoDesc onHandleImputChange={(v) => onHandleImputChange('desc', v)} fromData={fromData} /> :
                         step == 3 ?
-                            <LogoColorPallete onHandleImputChange={(v) => onHandleImputChange('palette', v)} fromData={fromData}/> :
+                            <LogoColorPallete onHandleImputChange={(v) => onHandleImputChange('palette', v)} fromData={fromData} /> :
                             step == 4 ?
-                                <LogoDesigns onHandleImputChange={(v) => onHandleImputChange('design', v)} fromData={fromData}/> :
+                                <LogoDesigns onHandleImputChange={(v) => onHandleImputChange('design', v)} fromData={fromData} /> :
                                 step == 5 ?
-                                    <LogoIdea onHandleImputChange={(v) => onHandleImputChange('idea', v)} fromData={fromData}/> :
+                                    <LogoIdea onHandleImputChange={(v) => onHandleImputChange('idea', v)} fromData={fromData} /> :
+                                    step == 6 ?
+                                        <PricingModel
+                                            fromData={fromData}
+                                            onHandleImputChange={(v) => onHandleImputChange('pricing', v)} /> :
 
-                                    null
+                                        null
             }
 
 
