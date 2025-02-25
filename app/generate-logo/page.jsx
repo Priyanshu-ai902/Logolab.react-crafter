@@ -7,8 +7,8 @@ import Image from "next/image";
 
 function GenerateLogo() {
   const [fromData, setFromData] = useState(null);
-  const [loading,setLoading]=useState(false)
-  const [logoImage,setLogoImage]=useState()
+  const [loading, setLoading] = useState(false);
+  const [logoImage, setLogoImage] = useState();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -16,9 +16,6 @@ function GenerateLogo() {
       if (storedData) {
         const parsedData = JSON.parse(storedData);
         setFromData(parsedData);
-        console.log("generate logo-data:", parsedData);
-      } else {
-        console.log("No data found in localStorage.");
       }
     }
   }, []);
@@ -29,8 +26,8 @@ function GenerateLogo() {
     }
   }, [fromData]);
 
-  const GenerateAILogo = async() => {
-    setLoading(true)
+  const GenerateAILogo = async () => {
+    setLoading(true);
     const PROMPT = Prompt.LOGO_PROMPT
       .replace("{logoTitle}", fromData?.titles)
       .replace("{logoDesc}", fromData?.desc)
@@ -39,20 +36,34 @@ function GenerateLogo() {
       .replace("{logoDesign}", fromData?.design?.title)
       .replace("{logoPrompt}", fromData?.design?.prompt);
 
-    console.log("Generated Prompt:", PROMPT);
+    const result = await axios.post("/api/ai-logo-model", {
+      prompt: PROMPT,
+    });
+    setLogoImage(result.data?.image);
+    setLoading(false);
+  };
 
-    const result = await axios.post('/api/ai-logo-model',{
-      prompt:PROMPT
-    })
-    console.log(result?.data)
-    setLogoImage(result.data?.image)
-    setLoading(false)
-  }; 
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = logoImage;
+    link.download = "GeneratedLogo.png";
+    link.click();
+  };
 
   return (
-    <div className="bg-black text-white">
-      <h2>{loading&&'Loading...'}</h2>
-      {!loading&&<Image src={logoImage} alt='logo' width={200} height={200}/>}
+    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6">
+      <h2 className="text-2xl font-bold mb-4">{loading ? "Generating Logo..." : "Your Generated Logo"}</h2>
+      {!loading && logoImage && (
+        <div className="flex flex-col items-center gap-4 bg-gray-800 p-6 rounded-2xl shadow-lg">
+          <Image src={logoImage} alt="Generated Logo" width={300} height={300} className="rounded-xl" />
+          <button
+            onClick={handleDownload}
+            className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300"
+          >
+            Download Logo
+          </button>
+        </div>
+      )}
     </div>
   );
 }
