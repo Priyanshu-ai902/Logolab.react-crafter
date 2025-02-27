@@ -3,6 +3,7 @@ import "./globals.css";
 import Provider from "./provider";
 import { ClerkProvider } from "@clerk/nextjs";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,6 +25,8 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+
+
           <Provider>
             {children}
           </Provider>

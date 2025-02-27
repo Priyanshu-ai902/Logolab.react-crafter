@@ -1,7 +1,8 @@
 import { Slider } from '@/components/ui/slider'
 import React, { useContext, useEffect, useState } from 'react'
 import ColorPickerController from './ColorPickerController'
-import { ControllerValueContext } from '../_context/ControllerValueContext'
+import { ControllerValueContext } from '../_context/ControllerValue';
+
 
 function BackgroundController() {
    const {value,setValue}=useContext(ControllerValueContext);

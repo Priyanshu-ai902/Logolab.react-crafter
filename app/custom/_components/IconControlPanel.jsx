@@ -3,8 +3,8 @@ import { LayoutGridIcon } from 'lucide-react'
 import React, { useContext, useEffect, useState } from 'react'
 import { Slider } from "@/components/ui/slider"
 import ColorPickerController from './ColorPickerController';
-import { ControllerValueContext } from '../_context/ControllerValueContext';
 import IconListDialog from './IconListDialog';
+import { ControllerValueContext } from '../_context/ControllerValue';
 
 function IconControlPanel() {
   const storageValue=JSON.parse(localStorage.getItem("value"))

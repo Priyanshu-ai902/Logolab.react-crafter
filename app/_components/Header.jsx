@@ -5,6 +5,7 @@ import { UserButton, useUser } from '@clerk/nextjs'
 import Image from 'next/image'
 import React from 'react'
 
+
 const Header = () => {
   const { user } = useUser()
   return (
@@ -33,6 +34,10 @@ const Header = () => {
           <UserButton />
         </div>
       </div>
+
+
+      
+
     </div>
 
   )
