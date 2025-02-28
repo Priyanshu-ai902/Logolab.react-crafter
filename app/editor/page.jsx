@@ -21,26 +21,27 @@ export default function Editor() {
 
   return (
     <ControllerValueContext.Provider value={{ value, setValue }}>
-      {/* Wrapper div to prevent multiple root elements */}
-      <div className="flex min-h-screen">
-        
-        {/* Fixed Sidebar */}
-        <div className="w-48 fixed h-full">
+
+      <div className="w-full flex min-h-screen  text-white">
+        <div className="w-56 h-full mt-6 bg-gray-900 bg-opacity-50 backdrop-blur-md shadow-lg border-r border-gray-800 rounded-xl">
           <SideNav />
         </div>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 md:grid-cols-6 flex-1 ml-48">
-          <div className="col-span-2">
+        <div className="flex-1 p-6 flex gap-6">
+
+          <div className="w-1/3 bg-gray-800 p-6 rounded-xl shadow-md border border-gray-700">
             <ControlPanel />
           </div>
-          <div className="col-span-3">
+
+          <div className="flex-1 bg-gray-800 p-6 rounded-xl shadow-md border border-gray-700">
             <LogoPlayGround />
           </div>
-          <div className="bg-green-50">kl</div>
         </div>
-
       </div>
+
+
+
+
     </ControllerValueContext.Provider>
-  );
+  )
 }
